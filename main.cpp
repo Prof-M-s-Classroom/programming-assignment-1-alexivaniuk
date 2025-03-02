@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+
 int main() {
     string mars = "Mars";
     string jupiter = "Jupiter";
@@ -11,26 +13,35 @@ int main() {
     string earth = "Earth";
     string venus = "Venus";
 
-    SpaceRoute<string> voyagerRoute;
+    SpaceRoute<string> *voyagerRoute = new SpaceRoute<string>();
 
-    voyagerRoute.addWaypointAtEnd(mars);
-    voyagerRoute.addWaypointAtEnd(jupiter);
-    voyagerRoute.addWaypointAtEnd(saturn);
-    voyagerRoute.addWaypointAtBeginning(earth);
-    voyagerRoute.addWaypointAtIndex(2, venus);
+    voyagerRoute->addWaypointAtEnd(mars);
+    voyagerRoute->addWaypointAtEnd(jupiter);
+    voyagerRoute->addWaypointAtEnd(saturn);
+    voyagerRoute->addWaypointAtBeginning(earth);
+    voyagerRoute->addWaypointAtIndex(2, venus);
 
     cout << "Voyager Route (Forward):\n";
-    voyagerRoute.traverseForward();
+    voyagerRoute->traverseForward();
 
     cout << "\nVoyager Route (Backward):\n";
-    voyagerRoute.traverseBackward();
+    voyagerRoute->traverseBackward();
 
     cout << "\nPrinting Route: \n";
-    voyagerRoute.print();
+    voyagerRoute->print();
 
-    voyagerRoute.removeWaypointAtIndex(2);
+    cout << "\nGetting the 2nd index: \n";
+    Node<string> *node = new Node<string>(voyagerRoute->getWaypoint(2)->data);
+    node->print();
+
+    cout << "\nAfter setting index 3 to Neptune: \n";
+    string name = "Neptune";
+    voyagerRoute->setWaypoint(3, name);
+    voyagerRoute->print();
+
+    voyagerRoute->removeWaypointAtIndex(2);
     cout << "\nAfter Removing Venus: \n";
-    voyagerRoute.print();
+    voyagerRoute->print();
 
     return 0;
 }
